@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+
+{% comment %} {% extends "base_bootstrap.html" %} {% endcomment %}
+
+{% block content %}
+  <h1>Product List</h1>
+  {% if product_list %}
+  <ul>
+    {% for product in product_list %}
+      <li>
+          product_id : {{ product.product_id }};
+          stock_pcs : ({{ product.stock_pcs }});
+          price : {{ product.price }};
+          shop_id : {{ product.shop_id}};
+          vip : {{ product.vip}};
+          <a href="{% url 'order_create2' product.product_id %}">Add Order</a>
+
+          {% comment %} (<a href="{% url 'autos:auto_update' auto.id %}">Update</a> |
+          <a href="{% url 'autos:auto_delete' auto.id %}">Delete</a>) <br/>
+          {{ auto.comments }} ({{ auto.mileage }} miles) {% endcomment %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no products in the library.</p>
+  {% endif %}
+
+  <a href="{% url 'order_create' %}">Create Order</a>
+
+
+  <h1>Order List</h1>
+  {% if order_list %}
+  <ul>
+    {% for order in order_list %}
+      <li>
+          id : {{ order.id }};
+          product_id : ({{ order.product_id }});
+          gty : {{ order.gty }};
+          price : {{ order.price}};
+          shop_id : {{ order.shop_id}};
+          <a href="{% url 'order_delete' order.id %}">Delete</a>
+
+          {% comment %} (<a href="{% url 'autos:auto_update' auto.id %}">Update</a> |
+          <a href="{% url 'autos:auto_delete' auto.id %}">Delete</a>) <br/>
+          {{ auto.comments }} ({{ auto.mileage }} miles) {% endcomment %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no orders in the library.</p>
+  {% endif %}
+
+  <p>
+    {% comment %} {% if make_count > 0 %}
+      <a href="{% url 'autos:auto_create' %}">Add an auto</a>
+    {% else %}
+      Please add a make before you add an auto.
+    {% endif %} {% endcomment %}
+  </p>
+  <p>
+  {% comment %} <a href="{% url 'autos:make_list' %}">View makes</a> ({{ make_count }}) |
+    <a href="{% url 'autos:make_create' %}">Add a make</a> {% endcomment %}
+  </p>
+{% endblock %}
+</body>
+</html>

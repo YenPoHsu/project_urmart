@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+
+{% comment %} {% extends "base_bootstrap.html" %} {% endcomment %}
+
+{% block content %}
+  <h1>Add Product to Order</h1>
+  {% if product %}
+  <ul>
+      <li>product_id : {{ product.product_id }};</li>
+      <li>stock_pcs : ({{ product.stock_pcs }});</li>
+      <li>price : {{ product.price }};</li>
+      <li>vip : {{ product.vip}};</li>
+  </ul>
+  {% else %}
+    <p>There are no data.</p>
+  {% endif %}
+
+  {% if user %}
+  <ul>
+      <li>user_id : {{ user.id }};</li>
+      {% comment %} <li>stock_pcs : ({{ product.stock_pcs }});</li>
+      <li>price : {{ product.price }};</li>
+      <li>vip : {{ product.vip}};</li> {% endcomment %}
+  </ul>
+  {% else %}
+    <p>There are no data.</p>
+  {% endif %}
+
+  {% if order %}
+  <ul>
+      <li> order_id : {{ order.id }} </li>
+      <li> product_id : {{ order.product_id }} </li>
+      <li> gty : {{ order.gty }} </li>
+      <li> price : {{ order.price }} </li>
+      <li> shop_id : {{ order.shop_id }} </li>
+      <li> user_id : {{ order.user_id }} </li>
+
+  </ul>
+  {% endif %}
+
+{% endblock %}
+</body>
+</html>
